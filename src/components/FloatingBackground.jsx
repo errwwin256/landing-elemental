@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 
+const base = import.meta.env.BASE_URL; // ✅ correct base for GitHub Pages
+
 const petalAssets = {
-  sakura: ["/petals/sakura1.svg", "/petals/sakura2.svg"],
-  lavender: ["/petals/lavender1.svg", "/petals/lavender2.svg"],
-  dandelion: ["/petals/dandelion1.svg", "/petals/dandelion2.svg"],
+  sakura: [`${base}petals/sakura1.svg`, `${base}petals/sakura2.svg`],
+  lavender: [`${base}petals/lavender1.svg`, `${base}petals/lavender2.svg`],
+  dandelion: [`${base}petals/dandelion1.svg`, `${base}petals/dandelion2.svg`],
 };
 
 export default function FloatingBackground({ theme }) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    // reset items whenever theme changes
-    setItems([]);
+    setItems([]); // reset when theme changes
 
     const active = petalAssets[theme];
     if (!active) return;
@@ -39,7 +40,7 @@ export default function FloatingBackground({ theme }) {
     }, 500);
 
     return () => clearInterval(interval);
-  }, [theme]); // 👈 important: reset on theme change
+  }, [theme]);
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
