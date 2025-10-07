@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// ⚠️ Replace with your OpenWeatherMap API key
 const API_KEY = "b2705cb751d8627aff55ee7c7f1aefcd";
 
 export default function Weather() {
@@ -77,31 +76,34 @@ export default function Weather() {
   }
 
   return (
-    <div className="max-w-md mx-auto my-10 p-6 rounded-2xl shadow-xl bg-gradient-to-b from-blue-50 to-white border">
+    <div className="w-full max-w-2xl mx-auto my-6 p-6 rounded-2xl shadow-xl bg-gradient-to-b from-blue-50 to-white border">
       {/* Search Form */}
-      <form onSubmit={onSearch} className="flex gap-2 mb-5">
+      <form
+        onSubmit={onSearch}
+        className="flex flex-col sm:flex-row gap-3 mb-5"
+      >
         <input
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter city (e.g. Manila)"
           className="flex-1 p-3 border rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none"
         />
-        <button className="px-5 py-2 rounded-xl bg-blue-500 text-white font-semibold hover:bg-blue-600 transition">
+        <button className="w-full sm:w-auto px-5 py-3 rounded-xl bg-blue-500 text-white font-semibold hover:bg-blue-600 transition">
           Search
         </button>
       </form>
 
       {/* Location & Clear Buttons */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <button
           onClick={locate}
-          className="flex-1 px-3 py-2 border rounded-lg hover:bg-gray-100 transition"
+          className="w-full sm:flex-1 px-3 py-2 border rounded-lg hover:bg-gray-100 transition"
         >
           📍 Use My Location
         </button>
         <button
           onClick={clearWeather}
-          className="flex-1 px-3 py-2 border rounded-lg hover:bg-gray-100 transition"
+          className="w-full sm:flex-1 px-3 py-2 border rounded-lg hover:bg-gray-100 transition"
         >
           ❌ Clear
         </button>
@@ -114,7 +116,7 @@ export default function Weather() {
       {/* Weather Data */}
       {data && (
         <div className="mt-4 p-5 bg-white rounded-xl shadow-md border">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
             <div>
               <div className="text-2xl font-bold">
                 {data.name}, {data.sys?.country}
@@ -129,7 +131,7 @@ export default function Weather() {
               <img
                 src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
                 alt={data.weather[0].description}
-                className="w-16 h-16"
+                className="w-20 h-20 mx-auto sm:mx-0"
               />
             )}
           </div>
@@ -138,14 +140,14 @@ export default function Weather() {
             {Math.round(data.main.temp)}°C
           </div>
 
-          <div className="grid grid-cols-3 gap-2 text-sm text-gray-600">
-            <div className="p-2 bg-gray-50 rounded-lg text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-gray-600">
+            <div className="p-3 bg-gray-50 rounded-lg text-center">
               Feels: {Math.round(data.main.feels_like)}°C
             </div>
-            <div className="p-2 bg-gray-50 rounded-lg text-center">
+            <div className="p-3 bg-gray-50 rounded-lg text-center">
               Humidity: {data.main.humidity}%
             </div>
-            <div className="p-2 bg-gray-50 rounded-lg text-center">
+            <div className="p-3 bg-gray-50 rounded-lg text-center">
               Wind: {data.wind?.speed} m/s
             </div>
           </div>
