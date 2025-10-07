@@ -57,36 +57,38 @@ export default function Calculator() {
   };
 
   return (
-    <div className="max-w-sm mx-auto my-10 p-6 rounded-3xl shadow-xl bg-gradient-to-br from-yellow-50 via-pink-50 to-green-50 border">
+    <div className="w-full max-w-md mx-auto my-6 p-4 sm:p-6 rounded-3xl shadow-xl bg-gradient-to-br from-yellow-50 via-pink-50 to-green-50 border">
       {/* Display */}
       <div className="mb-5">
         <input
           value={expr}
           onChange={(e) => setExpr(e.target.value)}
-          className="w-full p-4 rounded-xl border-2 border-green-300 text-xl font-semibold text-gray-800 shadow-inner bg-white"
+          className="w-full p-3 sm:p-4 rounded-xl border-2 border-green-300 text-lg sm:text-xl font-semibold text-gray-800 shadow-inner bg-white"
           placeholder="🍊 Enter expression"
         />
-        <div className="mt-3 text-3xl font-bold text-pink-600">{result}</div>
+        <div className="mt-3 text-2xl sm:text-3xl font-bold text-pink-600 break-all">
+          {result}
+        </div>
       </div>
 
       {/* Buttons */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {/* Clear Button */}
         <button
           onClick={clearAll}
-          className="py-3 rounded-xl bg-red-400 text-white font-bold shadow hover:opacity-90 transition col-span-2"
+          className="py-2 sm:py-3 rounded-xl bg-red-400 text-white font-bold shadow hover:opacity-90 transition col-span-2 text-sm sm:text-base"
         >
           🍓 C
         </button>
         <button
           onClick={() => press("(")}
-          className="py-3 rounded-xl bg-blue-300 text-white font-bold shadow hover:opacity-90 transition"
+          className="py-2 sm:py-3 rounded-xl bg-blue-300 text-white font-bold shadow hover:opacity-90 transition text-sm sm:text-base"
         >
           (
         </button>
         <button
           onClick={() => press(")")}
-          className="py-3 rounded-xl bg-blue-300 text-white font-bold shadow hover:opacity-90 transition"
+          className="py-2 sm:py-3 rounded-xl bg-blue-300 text-white font-bold shadow hover:opacity-90 transition text-sm sm:text-base"
         >
           )
         </button>
@@ -96,7 +98,7 @@ export default function Calculator() {
           <button
             key={b.val}
             onClick={() => press(b.val)}
-            className={`py-3 rounded-xl font-bold shadow hover:opacity-90 transition ${
+            className={`py-2 sm:py-3 rounded-xl font-bold shadow hover:opacity-90 transition text-sm sm:text-lg ${
               fruitColors[b.val] || "bg-white border-2 border-yellow-200"
             }`}
           >

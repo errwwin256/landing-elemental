@@ -85,35 +85,38 @@ export default function Todo() {
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto my-10 relative">
+    <div className="w-full max-w-3xl mx-auto my-6 sm:my-10 px-3 sm:px-0 relative">
       {/* Paper-like container */}
-      <div className="relative bg-white shadow-xl rounded-xl border border-gray-200 p-8 overflow-hidden">
+      <div className="relative bg-white shadow-xl rounded-xl border border-gray-200 p-4 sm:p-8 overflow-hidden">
         {/* Notebook lines */}
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(to bottom,#e5e7eb_1px,transparent_29px)] pointer-events-none opacity-20"></div>
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(to_bottom,#e5e7eb_1px,transparent_29px)] pointer-events-none opacity-20"></div>
         {/* Left margin line */}
-        <div className="absolute top-0 left-12 bottom-0 w-[2px] bg-pink-300 opacity-40 pointer-events-none"></div>
+        <div className="absolute top-0 left-8 sm:left-12 bottom-0 w-[2px] bg-pink-300 opacity-40 pointer-events-none"></div>
 
         {/* Header */}
-        <h2 className="relative text-3xl font-bold mb-6 font-poppins text-gray-800 tracking-wide z-10">
+        <h2 className="relative text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 font-poppins text-gray-800 tracking-wide z-10">
           📄 My To-Do List
         </h2>
 
         {/* Add Task Form */}
-        <form onSubmit={addTask} className="flex gap-3 mb-6 relative z-10">
+        <form
+          onSubmit={addTask}
+          className="flex flex-col sm:flex-row gap-3 mb-6 relative z-10"
+        >
           <input
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Write your task..."
-            className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-300 focus:outline-none font-poppins bg-white/90"
+            className="flex-1 p-2 sm:p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-300 focus:outline-none font-poppins bg-white/90 text-sm sm:text-base"
           />
-          <button className="px-5 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition">
+          <button className="px-4 sm:px-5 py-2 sm:py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition text-sm sm:text-base">
             Add
           </button>
         </form>
 
         {/* Task List */}
-        <ul className="space-y-4 max-h-[60vh] overflow-auto relative z-10">
+        <ul className="space-y-3 sm:space-y-4 max-h-[60vh] overflow-auto relative z-10">
           {tasks.length === 0 && (
             <li className="text-gray-400 italic">
               No tasks yet, add something!
@@ -122,28 +125,30 @@ export default function Todo() {
           {tasks.map((task) => (
             <li
               key={task.id}
-              className={`flex items-center justify-between p-4 rounded shadow-sm hover:shadow-md transition ${task.color}`}
+              className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 p-3 sm:p-4 rounded shadow-sm hover:shadow-md transition ${task.color}`}
             >
               {task.editing ? (
-                <div className="flex gap-2 flex-1">
+                <div className="flex flex-col sm:flex-row gap-2 flex-1">
                   <input
                     type="text"
                     value={task.draft || ""}
                     onChange={(e) => updateDraft(task.id, e.target.value)}
-                    className="flex-1 p-2 border rounded focus:ring-1 focus:ring-blue-300"
+                    className="flex-1 p-2 border rounded focus:ring-1 focus:ring-blue-300 text-sm sm:text-base"
                   />
-                  <button
-                    onClick={() => saveEdit(task.id)}
-                    className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition"
-                  >
-                    Save
-                  </button>
-                  <button
-                    onClick={() => cancelEdit(task.id)}
-                    className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition"
-                  >
-                    Cancel
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => saveEdit(task.id)}
+                      className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition text-sm"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => cancelEdit(task.id)}
+                      className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400 transition text-sm"
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <>
@@ -152,10 +157,10 @@ export default function Todo() {
                       type="checkbox"
                       checked={task.done}
                       onChange={() => toggleDone(task.id)}
-                      className="h-5 w-5"
+                      className="h-4 w-4 sm:h-5 sm:w-5"
                     />
                     <span
-                      className={`font-poppins ${
+                      className={`font-poppins text-sm sm:text-base ${
                         task.done
                           ? "line-through text-gray-400"
                           : "text-gray-800"
@@ -167,13 +172,13 @@ export default function Todo() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => startEdit(task.id)}
-                      className="px-2 py-1 text-sm border rounded hover:bg-gray-100 transition"
+                      className="px-2 py-1 text-xs sm:text-sm border rounded hover:bg-gray-100 transition"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => removeTask(task.id)}
-                      className="px-2 py-1 text-sm border rounded text-red-600 hover:bg-red-50 transition"
+                      className="px-2 py-1 text-xs sm:text-sm border rounded text-red-600 hover:bg-red-50 transition"
                     >
                       Delete
                     </button>

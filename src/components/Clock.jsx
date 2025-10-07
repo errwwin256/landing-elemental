@@ -48,10 +48,10 @@ export default function Clock({ theme }) {
   const themeColor = colors[theme] || colors.sakura;
 
   return (
-    <div className="flex flex-col items-center space-y-4 relative">
+    <div className="flex flex-col items-center space-y-3 sm:space-y-4 relative">
       {/* Weekday */}
       <div
-        className={`text-2xl font-bold font-poppins ${themeColor.text}`}
+        className={`text-lg sm:text-2xl font-bold font-poppins ${themeColor.text}`}
         style={{ textShadow: themeColor.glow }}
       >
         {weekday.toUpperCase()}
@@ -59,33 +59,33 @@ export default function Clock({ theme }) {
 
       {/* Full date */}
       <div
-        className={`px-4 py-1 rounded-lg backdrop-blur-md ${themeColor.backdrop} 
-        border ${themeColor.ring} font-poppins font-medium ${themeColor.text} text-sm`}
+        className={`px-3 sm:px-4 py-1 rounded-lg backdrop-blur-md ${themeColor.backdrop} 
+        border ${themeColor.ring} font-poppins font-medium ${themeColor.text} text-xs sm:text-sm`}
         style={{ textShadow: themeColor.glow }}
       >
         {fullDate}
       </div>
 
       {/* Clock container */}
-      <div className="relative w-52 h-52 flex items-center justify-center">
+      <div className="relative w-36 h-36 sm:w-52 sm:h-52 flex items-center justify-center">
         {/* Orbiting Arc 1 */}
         <div
-          className={`absolute w-60 h-60 rounded-full border-t-4 ${themeColor.ring} 
+          className={`absolute w-40 h-40 sm:w-60 sm:h-60 rounded-full border-t-4 ${themeColor.ring} 
           border-l-transparent border-r-transparent border-b-transparent animate-spin-slow`}
           style={{ filter: "drop-shadow(0 0 8px currentColor)" }}
         ></div>
 
         {/* Orbiting Arc 2 (reverse direction) */}
         <div
-          className={`absolute w-44 h-44 rounded-full border-b-4 ${themeColor.ring} 
+          className={`absolute w-28 h-28 sm:w-44 sm:h-44 rounded-full border-b-4 ${themeColor.ring} 
           border-l-transparent border-r-transparent border-t-transparent animate-spin-slower`}
           style={{ filter: "drop-shadow(0 0 8px currentColor)" }}
         ></div>
 
         {/* Digital LED Time */}
         <div
-          className={`px-6 py-6 rounded-full backdrop-blur-md ${themeColor.backdrop} 
-          border ${themeColor.ring} font-mono text-3xl font-bold tracking-widest ${themeColor.text}`}
+          className={`px-4 sm:px-6 py-4 sm:py-6 rounded-full backdrop-blur-md ${themeColor.backdrop} 
+          border ${themeColor.ring} font-mono text-xl sm:text-3xl font-bold tracking-widest ${themeColor.text}`}
           style={{ textShadow: themeColor.glow }}
         >
           {formattedTime}
